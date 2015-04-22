@@ -1,0 +1,3 @@
+﻿<EnvironmentConfig>
+    <ConnectionString>mongodb://<userid>:<passwrd>@<server>:<port>/projdb</ConnectionString>
+</EnvironmentConfig>

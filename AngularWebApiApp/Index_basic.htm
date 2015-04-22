@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script type="text/javascript">
+        var ap = angular.module('myApp', []);
+
+        ap.controller('homeCtrl', ['$scope','httpSvc','$timeout', function ($scope,httpSvc,$timeout) {
+            $scope.vm = {};
+            $scope.vm.test = 'hello world';
+
+            $timeout(function () {
+                httpSvc.getUrl('api/proj').then(function (resp) {
+                    $scope.vm.vals = resp;
+                }, function (errinfo) { console.log(errinfo.errorInfo); });
+            }, 10);
+
+
+        }]);
+
+
+    </script>
+</head>
+<body>
+    <div ng-controller="homeCtrl">
+        <span>{{vm.test}}</span>
+        <div ng-repeat="v in vm.vals">
+            <span>{{v}}</span>
+        </div>
+    </div>
+</body>
+</html>
